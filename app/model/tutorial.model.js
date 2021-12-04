@@ -56,4 +56,26 @@ Tutorial.findAll = (title, result) => {
   });
 };
 
+Tutorial.updateById = (id, tutorial, result) => {
+  sql.query(
+    `UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?`,
+    [tutorial.title, tutorial.description, tutorial.published, id],
+    (err, res) => {
+      if (err) {
+        console.log(err);
+        result(err, null);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("Updated Tutorial", { id: id, ...tutorial });
+      result(null, { id: id, ...tutorial });
+    }
+  );
+};
+
 module.exports = Tutorial;

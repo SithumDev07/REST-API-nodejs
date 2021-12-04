@@ -50,3 +50,25 @@ exports.getAll = (req, res) => {
     } else res.send(data);
   });
 };
+
+exports.updateByID = (req, res) => {
+  if (!req.body) {
+    res.status(404).send({
+      message: "Content Cannot be empty",
+    });
+  }
+
+  Tutorial.updateById(req.params.id, new Tutorial(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Tutorial with id ${req.params.id}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Can't update tutorial for that id: ${req.params.id}`,
+        });
+      }
+    } else res.send(data);
+  });
+};
