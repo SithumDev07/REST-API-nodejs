@@ -4,7 +4,7 @@
   "description": "REST API using Node js Express Mysql",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [
     "express",
@@ -15,8 +15,15 @@
   "author": "SithumDev07",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.4",
+    "tailwindcss": "^2.2.19"
   }
 }
